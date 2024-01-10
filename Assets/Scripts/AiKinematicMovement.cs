@@ -43,6 +43,7 @@ public class AiKinematicMovement : AiMovement
         }
 
         Acceleration = Vector3.zero;
+        
     }
     // Start is called before the first frame update
     void Start()
