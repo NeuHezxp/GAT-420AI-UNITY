@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AiPerception : MonoBehaviour
+public abstract class AIPerception : MonoBehaviour
 {
-   public string tagName = "";
-   public float distance = 1;
-   public float maxAngle = 45;
+    [SerializeField] protected string tagName = "";
+    [SerializeField] protected float distance = 1;
+    [SerializeField] protected float maxAngle = 45;
 
-   public abstract GameObject[] GetGameObjects();
+    public string TagName { get { return tagName; } }
+    public float Distance { get { return distance; } }
+    public float MaxAngle { get { return maxAngle; } }
+
+    public abstract GameObject[] GetGameObjects();
 
 
 }

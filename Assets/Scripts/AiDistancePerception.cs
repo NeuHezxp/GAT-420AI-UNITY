@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class AiDistancePerception : AiPerception
+public class AIDistancePerception : AIPerception
 {
     public override GameObject[] GetGameObjects()
     {
-        List<GameObject> result = new List<GameObject>(); //objects that are seen
+        List<GameObject> result = new List<GameObject>();
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, distance);
         foreach (Collider collider in colliders)
         {
-            // skip self
+            // check if collision is self, 
             if (collider.gameObject == gameObject) continue;
+
             if (tagName == "" || collider.CompareTag(tagName))
             {
                 // calculate angle from transform forward vector to direction of game object
@@ -26,9 +28,6 @@ public class AiDistancePerception : AiPerception
             }
         }
 
-        return result.ToArray(); //changes list to array
-
+        return result.ToArray();
     }
-
-   
 }

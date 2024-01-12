@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiKinematicMovement : AiMovement
+public class AIKinematicMovement : AIMovement
 {
     public override void ApplyForce(Vector3 force)
     {
@@ -24,9 +24,10 @@ public class AiKinematicMovement : AiMovement
     {
         //
     }
+
     private void Awake()
     {
-        
+
     }
 
     void LateUpdate()
@@ -34,7 +35,6 @@ public class AiKinematicMovement : AiMovement
         Velocity += Acceleration * Time.deltaTime;
         Velocity = Vector3.ClampMagnitude(Velocity, maxSpeed);
         //Velocity = Velocity.ClampMagnitude(minSpeed, maxSpeed);
-
         transform.position += Velocity * Time.deltaTime;
 
         if (Velocity.sqrMagnitude > 0.1f)
@@ -43,17 +43,5 @@ public class AiKinematicMovement : AiMovement
         }
 
         Acceleration = Vector3.zero;
-        
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
