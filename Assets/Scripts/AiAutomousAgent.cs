@@ -8,6 +8,12 @@ public class AIAutonomousAgent : AIAgent
     public AIPerception fleePerception = null;
     public AIPerception flockPerception = null;
 
+    private Vector3 WanderTarget;
+
+    private void Start()
+    {
+        WanderTarget = Vector3.zero;
+    }
     private void Update()
     {
         // seek
@@ -18,6 +24,9 @@ public class AIAutonomousAgent : AIAgent
             {
                 Vector3 force = Seek(gameObjects[0]);
                 movement.ApplyForce(force);
+
+                Debug.Log("Seeking Target: " + seekPerception.GetGameObjects()[0].name);
+               
             }
         }
 
@@ -29,6 +38,9 @@ public class AIAutonomousAgent : AIAgent
             {
                 Vector3 force = Flee(gameObjects[0]);
                 movement.ApplyForce(force);
+
+                Debug.Log("fleeing Target: " + fleePerception.GetGameObjects()[0].name);
+                
             }
         }
 
@@ -41,7 +53,20 @@ public class AIAutonomousAgent : AIAgent
                 movement.ApplyForce(Cohesion(gameObjects));
                 movement.ApplyForce(Separation(gameObjects, 3));
                 movement.ApplyForce(Alignment(gameObjects));
+
+                Debug.Log("flocking: " + flockPerception.GetGameObjects()[0].name);
+                
             }
+        }
+
+        // If no other behaviors are active, use wander
+        if (seekPerception == null && fleePerception == null && flockPerception == null)
+        {
+            Vector3 force = Wander();
+            movement.ApplyForce(force);
+
+            Debug.Log("Wandering");
+            Debug.DrawRay(transform.position, force, Color.yellow);
         }
 
         transform.position = Utilities.Wrap(transform.position, new Vector3(-10, -10, -10), new Vector3(10, 10, 10));
@@ -84,9 +109,13 @@ public class AIAutonomousAgent : AIAgent
         Vector3 separation = Vector3.zero;
         foreach (var neighbor in neighbors)
         {
+            // get direction vector away from neighbor
             Vector3 direction = (transform.position - neighbor.transform.position);
+            // check if within separation radius
             if (direction.magnitude < radius)
             {
+                // scale separation vector inversely proportional to the direction distance
+                // closer the distance the stronger the separation
                 separation += direction / direction.sqrMagnitude;
             }
         }
@@ -109,6 +138,25 @@ public class AIAutonomousAgent : AIAgent
         Vector3 force = GetSteeringForce(averageVelocity);
 
         return force;
+    }
+    private Vector3 Wander()
+    {
+        // Adjust the WanderTarget position randomly
+        // You might need to tweak these values based on your specific needs
+        float wanderRadius = 5.0f;
+        float wanderDistance = 3.0f;
+        float wanderJitter = 1.0f;
+
+        WanderTarget += new Vector3(Random.Range(-1f, 1f) * wanderJitter, 0, Random.Range(-1f, 1f) * wanderJitter);
+        WanderTarget.Normalize();
+        WanderTarget *= wanderRadius;
+
+        Vector3 targetLocal = WanderTarget + new Vector3(0, 0, wanderDistance);
+        Vector3 targetWorld = transform.TransformPoint(targetLocal);
+
+        Vector3 wanderForce = targetWorld - transform.position;
+
+        return wanderForce.normalized * movement.maxSpeed - movement.Velocity;
     }
 
     private Vector3 GetSteeringForce(Vector3 direction)

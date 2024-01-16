@@ -6,6 +6,7 @@ public class AIKinematicMovement : AIMovement
 {
     public override void ApplyForce(Vector3 force)
     {
+          force.y = 0;
         Acceleration += force;
     }
 
@@ -34,8 +35,10 @@ public class AIKinematicMovement : AIMovement
     {
         Velocity += Acceleration * Time.deltaTime;
         Velocity = Vector3.ClampMagnitude(Velocity, maxSpeed);
-        //Velocity = Velocity.ClampMagnitude(minSpeed, maxSpeed);
         transform.position += Velocity * Time.deltaTime;
+
+        //float terrainHeight = Terrain.activeTerrain.SampleHeight(transform.position);
+        //transform.position = new Vector3(transform.position.x, terrainHeight, transform.position.z);
 
         if (Velocity.sqrMagnitude > 0.1f)
         {
