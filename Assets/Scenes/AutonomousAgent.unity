@@ -514,8 +514,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5027658, y: -0.005961062, z: 0.0034783585, w: -0.8643951}
-  m_LocalPosition: {x: 0.19462678, y: 12.55475, z: -9.380539}
+  m_LocalRotation: {x: 0.3651661, y: 0.0016825234, z: -0.00067056814, w: 0.9309406}
+  m_LocalPosition: {x: 0.021976113, y: 12.720764, z: -13.692935}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b8f1974cd2dfa48b63e9b328c7cf75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1149399905
+--- !u!114 &1149399904
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -657,16 +657,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 591065556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb78b269f4deb5d4aac62f060ca04d3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 310710ebe2309fb419fe7edf69fa6216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: 
   distance: 5
-  maxAngle: 90
+  maxAngle: 80
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  numRaycast: 9
+  numRaycast: 15
+  radius: 0.5
 --- !u!1 &1378912941
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +957,7 @@ PrefabInstance:
     - target: {fileID: 2366168560542219892, guid: 02f9e05e39e790a4d88247270ce61739, type: 3}
       propertyPath: obsticalPerception
       value: 
-      objectReference: {fileID: 1149399905}
+      objectReference: {fileID: 0}
     - target: {fileID: 3065492470398049350, guid: 02f9e05e39e790a4d88247270ce61739, type: 3}
       propertyPath: m_Name
       value: AutonomousAgent
@@ -1007,7 +1008,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3065492470398049350, guid: 02f9e05e39e790a4d88247270ce61739, type: 3}
       insertIndex: 3
-      addedObject: {fileID: 1149399905}
+      addedObject: {fileID: 1149399904}
   m_SourcePrefab: {fileID: 100100000, guid: 02f9e05e39e790a4d88247270ce61739, type: 3}
 --- !u!1001 &2021488063446871193
 PrefabInstance:
