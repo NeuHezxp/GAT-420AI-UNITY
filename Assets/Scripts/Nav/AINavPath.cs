@@ -5,52 +5,74 @@ using UnityEngine;
 
 public class AINavPath : MonoBehaviour
 {
-	[SerializeField] private AINavNode startNode;
+    //[RequireComponent(typeof(AINavAgent))]
+    public enum ePathType
+    {
+        Waypoint,
+        Dijkstra,
+        AStar
+    }
+    [SerializeField] ePathType pathType;
+    [SerializeField] AINavNode startNode;
+    [SerializeField] AINavNode EndNode;
+    AINavAgent agent;
+    public AINavNode targetNode { get; set; } = null;
+    List<AINavNode> path = new List<AINavNode>();
 
-	public AINavNode targetNode { get; set; } = null;
-	public Vector3 destination 
-	{ 
-		get 
-		{ 
-			return (targetNode != null) ? targetNode.transform.position : Vector3.zero; 
-		} 
-	}
 
-	private void Start()
-	{
-		targetNode = (startNode != null) ? startNode : AINavNode.GetRandomAINavNode(); 
-		
-	}
 
-	public bool HasPath()
-	{
-		return targetNode != null;
-	}
 
-	public AINavNode GetNextAINavNode(AINavNode node)
-	{
-		return node.GetRandomNeighbor();
-	}
 
-	/*
-	public AINavNode GetNearestAINavNode()
-	{
-		var nodes = AINavNode.GetAINavNodes().ToList();
-		SortAINavNodesByDistance(nodes);
 
-		return (nodes.Count == 0) ? null : nodes[0];
-	}
+    public Vector3 destination
+    {
+        get
+        {
+            return (targetNode != null) ? targetNode.transform.position : Vector3.zero;
+        }
+        set
+        {
+            if (pathType == ePathType.Waypoint) { targetNode = agent.GetNearestAINavNode(value); }
+            else if (pathType == ePathType.Dijkstra || pathType == ePathType.AStar)
+            {
+                generatePath(startNode, EndNode);
+            }
+        }
+    }
 
-	public void SortAINavNodesByDistance(List<AINavNode> nodes)
-	{
-		nodes.Sort(CompareDistance);
-	}
+    private void Start()
+    {
+        agent = GetComponent<AINavAgent>();
+        targetNode = (startNode != null) ? startNode : AINavNode.GetRandomAINavNode();
 
-	public int CompareDistance(AINavNode a, AINavNode b)
-	{
-		float squaredRangeA = (a.transform.position - transform.position).sqrMagnitude;
-		float squaredRangeB = (b.transform.position - transform.position).sqrMagnitude;
-		return squaredRangeA.CompareTo(squaredRangeB);
-	}
-	*/
+    }
+
+    public bool HasTarget()
+    {
+        return targetNode != null;
+    }
+
+    public AINavNode GetNextAINavNode(AINavNode node)
+    {
+        if (pathType == ePathType.Waypoint) return node.GetRandomNeighbor();
+
+        if (pathType == ePathType.Dijkstra || pathType == ePathType.AStar) return GetNextPathAINavNode(node);
+        return null;
+    }
+
+    private void generatePath(AINavNode start, AINavNode end)
+    {
+        AINavNode.ResetNodes();
+        AINavDijkstra.Generate(start, end, ref path);
+    }
+    private AINavNode GetNextPathAINavNode(AINavNode node)
+    {
+        if (path.Count == 0) return null;
+        int index = path.FindIndex(pathNode => pathNode == node);
+        if(index == -1) return null;
+        if (index + 1 == path.Count) return null;
+
+        AINavNode nextNode = path[index + 1];
+        return null;
+    }
 }
