@@ -12,12 +12,12 @@ public class AINavPath : MonoBehaviour
         Dijkstra,
         AStar
     }
+   
     [SerializeField] ePathType pathType;
-    [SerializeField] AINavNode startNode;
-    [SerializeField] AINavNode EndNode;
-    AINavAgent agent;
-    public AINavNode targetNode { get; set; } = null;
+    [SerializeField] AINavAgent agent;
+
     List<AINavNode> path = new List<AINavNode>();
+    public AINavNode targetNode { get; set; } = null;
 
 
 
@@ -35,15 +35,17 @@ public class AINavPath : MonoBehaviour
             if (pathType == ePathType.Waypoint) { targetNode = agent.GetNearestAINavNode(value); }
             else if (pathType == ePathType.Dijkstra || pathType == ePathType.AStar)
             {
-                generatePath(startNode, EndNode);
+               AINavNode startNode = agent.GetNearestAINavNode(transform.position);
+                AINavNode endNode = agent.GetNearestAINavNode(value);
+
+                generatePath(startNode, endNode);
+                targetNode = startNode; //sets initial target as the start node.
             }
         }
     }
 
     private void Start()
     {
-        agent = GetComponent<AINavAgent>();
-        targetNode = (startNode != null) ? startNode : AINavNode.GetRandomAINavNode();
 
     }
 
@@ -63,16 +65,37 @@ public class AINavPath : MonoBehaviour
     private void generatePath(AINavNode start, AINavNode end)
     {
         AINavNode.ResetNodes();
-        AINavDijkstra.Generate(start, end, ref path);
+        if(pathType == ePathType.AStar) AINavAStar.Generate(start, end, ref path);
+        if(pathType == ePathType.Dijkstra) AINavDijkstra.Generate(start, end, ref path);
+    
     }
     private AINavNode GetNextPathAINavNode(AINavNode node)
     {
         if (path.Count == 0) return null;
         int index = path.FindIndex(pathNode => pathNode == node);
-        if(index == -1) return null;
-        if (index + 1 == path.Count) return null;
+        if(index == -1 || index + 1 == path.Count) return null;
+       
 
         AINavNode nextNode = path[index + 1];
-        return null;
+
+        return nextNode;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if (path.Count == 0) return;
+
+        var pathArray = path.ToArray();
+
+        for (int i = 1; i < path.Count - 1; i++)
+        {
+            Gizmos.color = Color.black;
+            Gizmos.DrawSphere(pathArray[i].transform.position + Vector3.up, 1);
+        }
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(pathArray[0].transform.position + Vector3.up, 1);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(pathArray[pathArray.Length - 1].transform.position + Vector3.up, 1);
     }
 }
