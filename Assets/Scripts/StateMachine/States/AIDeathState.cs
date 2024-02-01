@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class AIDeathState : AIState
 {
+
+    float timer = 0;
+
     public AIDeathState(AIStateAgent agent) : base(agent)
     {
     }
 
     public override void OnEnter()
     {
-        throw new System.NotImplementedException();
+        agent.animator?.SetTrigger("Death"); //sets trigger from animator to death animation.
+        timer = Time.time + 2; //a time 2 seconds later
+    }
+    public override void OnUpdate()
+    {
+        if (Time.time > timer)
+        {
+           Object.Destroy(agent.gameObject);
+        }
     }
 
     public override void OnExit()
@@ -18,8 +29,4 @@ public class AIDeathState : AIState
         throw new System.NotImplementedException();
     }
 
-    public override void OnUpdate()
-    {
-        throw new System.NotImplementedException();
-    }
 }

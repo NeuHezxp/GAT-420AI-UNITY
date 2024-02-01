@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class AIPatrolState : AIState
 {
+    Vector3 destination;
+
     public AIPatrolState(AIStateAgent agent) : base(agent)
     {
     }
 
     public override void OnEnter()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void OnExit()
-    {
-        throw new System.NotImplementedException();
+      var navNode = AINavNode.GetRandomAINavNode();
+        destination = navNode.transform.position;
     }
 
     public override void OnUpdate()
     {
-        throw new System.NotImplementedException();
+        //move towards destination then idle
+        agent.movement.MoveTowards(destination);
+        if(Vector3.Distance(agent.transform.position,destination) < 1)
+        {
+            agent.stateMachine.SetState(nameof(AIIdleState));
+        }
+        var enemies = agent.enemyPerception.GetGameObjects();
+        if (enemies.Length > 0)
+        {
+            agent.stateMachine.SetState(nameof(AIChaseState));
+        }
     }
+    public override void OnExit()
+    {
+        
+    }
+
 }
