@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 2093059020320673654}
-  animator: {fileID: 2647584080823150559}
+  animator: {fileID: 6853643536761380786}
   enemyPerception: {fileID: 8361469099854037291}
   friendPerception: {fileID: 5162681687447652349}
   health: 100

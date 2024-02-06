@@ -32,8 +32,8 @@ public class AIStateAgent : AIAgent
         {
             stateMachine.SetState(nameof(AIDeathState));
         }
-        float speed = movement.Velocity.magnitude;
-        animator?.SetFloat("Speed", speed);
+
+        animator?.SetFloat("Speed", movement.Velocity.magnitude);
         stateMachine.Update();
     }
 
