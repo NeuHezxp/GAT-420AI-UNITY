@@ -2,30 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIAttackState : AIState
+public class AIWaveState : AIState
 {
-    float timer = 0;
-    public AIAttackState(AIStateAgent agent) : base(agent)
+    float timer;
+    public AIWaveState(AIStateAgent agent) : base(agent)
     {
     }
 
     public override void OnEnter()
     {
-        agent.animator?.SetTrigger("Attack");
+        Debug.Log("Entered Waving State");
+        agent.animator?.SetTrigger("Waving");
         timer = Time.time + 2;
     }
+
+
     public override void OnUpdate()
     {
-        Debug.Log("Attacking Update");
+        Debug.Log("Exiting Waving State");
         if (Time.time > timer)
         {
-            agent.stateMachine.SetState(nameof(AIIdleState));
+            agent.stateMachine.SetState(nameof(AIPatrolState));
         }
     }
-
     public override void OnExit()
     {
         
     }
-
 }

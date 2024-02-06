@@ -25,10 +25,17 @@ public class AIPatrolState : AIState
             agent.stateMachine.SetState(nameof(AIIdleState));
         }
         var enemies = agent.enemyPerception.GetGameObjects();
-        if (enemies.Length > 0)
+        if (enemies.Length > 2)
         {
             agent.stateMachine.SetState(nameof(AIChaseState));
         }
+        var friends = agent.friendPerception.GetGameObjects();
+        if (friends.Length > 1)
+        {
+            Debug.Log("Idle to Dance update");
+            agent.stateMachine.SetState(nameof(AIDanceState));
+        }
+
     }
     public override void OnExit()
     {

@@ -16,12 +16,6 @@ public class AIIdleState : AIState
         Debug.Log("idle enter");
         timer = Time.time + Random.Range(1,2);
     }
-
-    public override void OnExit()
-    {
-        Debug.Log("idle exit");
-    }
-
     public override void OnUpdate()
     {
         if (Time.time > timer)
@@ -29,12 +23,37 @@ public class AIIdleState : AIState
             agent.stateMachine.SetState(nameof(AIPatrolState));
         }
 
-        Debug.Log("idle update");
         var enemies = agent.enemyPerception.GetGameObjects();
         if (enemies.Length > 0)
         {
-            agent.stateMachine.SetState(nameof(AIAttackState));
+        Debug.Log("idle to Chase");
+            agent.stateMachine.SetState(nameof(AIChaseState));
+        }
+
+        if (enemies.Length > 2)
+        {
+            Debug.Log("idle to Flee");
+            agent.stateMachine.SetState(nameof(AIFleeState));
+        }
+
+        var friends = agent.friendPerception.GetGameObjects();
+        if (friends.Length > 0)
+        {
+            Debug.Log("Idle to wave update");
+            agent.stateMachine.SetState(nameof(AIWaveState));
+        }
+        
+        if (friends.Length > 1 )
+        {
+            Debug.Log("Idle to Dance update");
+            agent.stateMachine.SetState(nameof(AIDanceState));
         }
 
     }
+
+    public override void OnExit()
+    {
+        Debug.Log("idle exit");
+    }
+
 }
