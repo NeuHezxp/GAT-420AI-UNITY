@@ -17,6 +17,8 @@ public class AIFleeState : AIState
 
     public override void OnEnter()
     {
+        Debug.Log("flee enter");
+        agent.movement.Resume();
         timer = Time.time + 2;
 
         // Save the initial speed to restore it later

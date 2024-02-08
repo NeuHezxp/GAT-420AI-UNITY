@@ -11,8 +11,8 @@ public class AIDanceState : AIState
 
     public override void OnEnter()
     {
-        agent.animator?.SetTrigger("Dance");
-        timer = Time.time + 2;
+        agent.animator?.SetTrigger("Dancing");
+        timer = Time.time + 3;
     }
     public override void OnUpdate()
     {

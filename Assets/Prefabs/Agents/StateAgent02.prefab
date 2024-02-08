@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 9139672705794823033}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.002, y: 1.706, z: 0.045}
-  m_LocalScale: {x: 0.37244, y: 0.37244, z: 0.37244}
+  m_LocalPosition: {x: 0.002, y: 1.706, z: 0.003}
+  m_LocalScale: {x: 0.5304663, y: 0.5304663, z: 0.5304663}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 784549005604274526}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 88eacf19dc94ae849ac3d0c4b72e4a73, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -504,13 +504,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Agent01
-  distance: 5
+  distance: 7.57
   maxAngle: 180
   layerMask:
     serializedVersion: 2
     m_Bits: 2048
-  numRaycast: 14
-  radius: 1.13
+  numRaycast: 15
+  radius: 0.26
 --- !u!195 &6835684239656862527
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -565,8 +565,31 @@ MonoBehaviour:
   movement: {fileID: 7996098734771871811}
   animator: {fileID: 6853643536761380786}
   enemyPerception: {fileID: 8361469099854037291}
-  friendPerception: {fileID: 8361469099854037291}
-  health: 100
+  friendPerception: {fileID: 6307658651008918093}
+  health:
+    value: 100
+  timer:
+    value: 0
+  destinationDistance:
+    value: 0
+  enemySeen:
+    value: 0
+  enemiesSeen:
+    value: 0
+  enemyDistance:
+    value: 0
+  enemyHealth:
+    value: 0
+  friendSeen:
+    value: 0
+  friendsSeen:
+    value: 0
+  friendDistance:
+    value: 0
+  friendHealth:
+    value: 0
+  enemy: {fileID: 0}
+  friend: {fileID: 0}
 --- !u!54 &5745479318535089779
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -630,13 +653,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Agent02
-  distance: 1.82
+  distance: 2.58
   maxAngle: 180.6
   layerMask:
     serializedVersion: 2
     m_Bits: 2048
-  numRaycast: 7
-  radius: 0.79
+  numRaycast: 18
+  radius: 0.1
 --- !u!4 &784549005604274526 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 73887074c1cdf90458e6e0245662bf7c, type: 3}

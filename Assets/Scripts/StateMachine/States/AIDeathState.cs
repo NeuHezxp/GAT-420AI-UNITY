@@ -15,6 +15,9 @@ public class AIDeathState : AIState
     {
         agent.animator?.SetTrigger("Death"); //sets trigger from animator to death animation.
         timer = Time.time + 2; //a time 2 seconds later
+        agent.movement.Stop();
+
+        agent.movement.Velocity = Vector3.zero;
     }
     public override void OnUpdate()
     {

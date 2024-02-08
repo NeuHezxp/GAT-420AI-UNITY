@@ -396,13 +396,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Agent02
-  distance: 5
+  distance: 6.75
   maxAngle: 180.5
   layerMask:
     serializedVersion: 2
     m_Bits: 2048
-  numRaycast: 15
-  radius: 1.23
+  numRaycast: 29
+  radius: 0.25
 --- !u!195 &6835684239656862527
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -441,7 +441,30 @@ MonoBehaviour:
   animator: {fileID: 6853643536761380786}
   enemyPerception: {fileID: 8361469099854037291}
   friendPerception: {fileID: 5162681687447652349}
-  health: 100
+  health:
+    value: 100
+  timer:
+    value: 10
+  destinationDistance:
+    value: 0
+  enemySeen:
+    value: 0
+  enemiesSeen:
+    value: 0
+  enemyDistance:
+    value: 0
+  enemyHealth:
+    value: 0
+  friendSeen:
+    value: 0
+  friendsSeen:
+    value: 0
+  friendDistance:
+    value: 0
+  friendHealth:
+    value: 0
+  enemy: {fileID: 0}
+  friend: {fileID: 0}
 --- !u!114 &2093059020320673654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,12 +546,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagName: Agent01
   distance: 1.86
-  maxAngle: 180.2
+  maxAngle: 110
   layerMask:
     serializedVersion: 2
     m_Bits: 2048
-  numRaycast: 7
-  radius: 0.81
+  numRaycast: 10
+  radius: 0.1
 --- !u!1 &5867020922034888611 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2593468494670710506, guid: 73887074c1cdf90458e6e0245662bf7c, type: 3}

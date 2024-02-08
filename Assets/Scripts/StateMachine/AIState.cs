@@ -11,8 +11,10 @@ public abstract class AIState
         this.agent = agent;
 
     }
+  public List<AIStateTransition> transitions = new List<AIStateTransition>();
 
-    public string name { get { return GetType().Name;  } }
+
+	public string name { get { return GetType().Name;  } }
 
     public abstract void OnEnter();
     public abstract void OnUpdate();
