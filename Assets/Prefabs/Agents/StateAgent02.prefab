@@ -504,8 +504,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Agent01
-  distance: 7.57
-  maxAngle: 180
+  distance: 7
+  maxAngle: 110
   layerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -587,6 +587,8 @@ MonoBehaviour:
   friendDistance:
     value: 0
   friendHealth:
+    value: 0
+  waveCooldown:
     value: 0
   enemy: {fileID: 0}
   friend: {fileID: 0}

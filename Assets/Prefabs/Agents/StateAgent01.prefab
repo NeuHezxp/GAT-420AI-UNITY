@@ -396,12 +396,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Agent02
-  distance: 6.75
-  maxAngle: 180.5
+  distance: 7
+  maxAngle: 110
   layerMask:
     serializedVersion: 2
     m_Bits: 2048
-  numRaycast: 29
+  numRaycast: 20
   radius: 0.25
 --- !u!195 &6835684239656862527
 NavMeshAgent:
@@ -462,6 +462,8 @@ MonoBehaviour:
   friendDistance:
     value: 0
   friendHealth:
+    value: 0
+  waveCooldown:
     value: 0
   enemy: {fileID: 0}
   friend: {fileID: 0}

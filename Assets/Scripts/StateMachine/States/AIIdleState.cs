@@ -23,7 +23,6 @@ public class AIIdleState : AIState
 
 		transition = new AIStateTransition(nameof(AIWaveState)); // <
 		transition.AddCondition(new BoolCondition(agent.friendSeen));
-		transition.AddCondition(new FloatCondition(agent.timer, Condition.Predicate.LESS, 0));
 		transitions.Add(transition);
 
 		transition = new AIStateTransition(nameof(AIDanceState)); // <
