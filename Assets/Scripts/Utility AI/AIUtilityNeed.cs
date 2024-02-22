@@ -20,6 +20,7 @@ public class AIUtilityNeed : MonoBehaviour
 	[SerializeField] float decayRate = 0;
 	[SerializeField] public float initalInput;
 
+
 	[Header("UI")]
 	[SerializeField] AIUIMeter meter;
 
@@ -53,6 +54,10 @@ public class AIUtilityNeed : MonoBehaviour
 	{
 		input = input - ((1 / decayRate) * Time.deltaTime);
 		meter.value = 1 - motive;
+	}
+	private void Start()
+	{
+		input = initalInput;
 	}
 
 	public float GetMotive(float value)

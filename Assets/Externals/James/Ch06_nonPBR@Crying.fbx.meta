@@ -1,64 +1,9 @@
 fileFormatVersion: 2
-guid: 73887074c1cdf90458e6e0245662bf7c
+guid: 22a1ec9cc0c791248ab04ed7fe2c4bfc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Ch06_body
-    second: {fileID: 2100000, guid: 85381a3c69bdd67479d9ed47b508ae49, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Ch06_body1
-    second: {fileID: 2100000, guid: ef8dc4ec035ee734eb671b040303c9bd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Ch06_eyelashes
-    second: {fileID: 2100000, guid: 34c76bb3ae0306347bedbe50bd925b7b, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch06_1001_Diffuse
-    second: {fileID: 2800000, guid: d7f6351a39f63d048b0dfc09f1360b3f, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch06_1001_Glossiness
-    second: {fileID: 2800000, guid: 7d7cdb2f1c1b94e4981d8ad084bfb7aa, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch06_1001_Normal
-    second: {fileID: 2800000, guid: 4edff660da7b21e4bb8e7f5c0d3ac905, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch06_1001_Specular
-    second: {fileID: 2800000, guid: 58a9fd225b11b804c821c59460abd6b2, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch06_1002_Diffuse
-    second: {fileID: 2800000, guid: 4c253cef52c5c4b4e88daf2907d11a56, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch06_1002_Glossiness
-    second: {fileID: 2800000, guid: 73f25fcd24d42284a86b3e137dda4608, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch06_1002_Normal
-    second: {fileID: 2800000, guid: 06749c5f49ce64947b46e7adb4ac6a18, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Ch06_1002_Specular
-    second: {fileID: 2800000, guid: 72f925c0183144b40ab2c1b761b0e374, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -130,16 +75,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 22a1ec9cc0c791248ab04ed7fe2c4bfc
-  - 7427b9398ebcac24b9f2801dd58d5168
-  - fc6aa952ec5b6f64caf8281f203638ab
-  - e47df326a4708e44b9928993797fa24b
-  - dc8d420dca014b745a942784774f0499
-  - 742753555b1b3be4fb5ded7236b7a046
-  - a2f8b40701270044dbe51011689331fb
-  - 87fa00e2da4a8514e85a1ce137b0b9b3
-  - da7a5dac67ed27e42a87d8399fb7c5a7
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3

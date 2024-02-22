@@ -13,30 +13,33 @@ public class AIUtilityAgent : AIAgent
     [SerializeField] AIUtilityNeed[] needs;
     [SerializeField, Range(0, 1), Tooltip("minimum score to use utlity object")] float scoreThreshold = 0.2f;
 
-    [Header("UI")]
+
+	[Header("UI")]
     [SerializeField] AIUIMeter meter;
 
 
     public AIUtilityObject activeUtilityObject { get; set; } = null;
 
-    // property to calculate and return agent's happiness level based on its needs
-    public float happiness
+	// property to calculate and return agent's happiness level based on its needs
+	public float happiness
     {
         get
         {
             // Total up total motives (desires) of all needs
-            float totalmotive = 0;
+            float totalMotives = 0;
             foreach (var need in needs)
             {
-                totalmotive += need.motive;
-            }            // Calculate happiness level based on the average fulfillment of needs
+                totalMotives += need.motive;
+            }
+            // Calculate happiness level based on the average fulfillment of needs
             // The lower the total motives (desires), the happier the agent
             // If the agent has a high amount of desires then they are unhappy (unfulfilled)
-            return 1 - totalmotive/needs.Length; // 1 - (divide total motives by number of needs to get average)
+            return 1 - (totalMotives / needs.Length); // 1 - (divide total motives by number of needs to get average)
         }
     }
 
-    private void OnValidate()
+
+	private void OnValidate()
     {
         meter.text = "Happiness";
     }
@@ -51,8 +54,11 @@ public class AIUtilityAgent : AIAgent
     {
         animator.SetFloat("Speed", movement.Velocity.magnitude);
 
-        // check if not using utility object, if not look for one to use
-        if (activeUtilityObject == null)
+		// setting animator based on happiness
+		animator.SetBool("Sad", happiness == 0);
+
+		// check if not using utility object, if not look for one to use
+		if (activeUtilityObject == null)
         {
             var gameObjects = perception.GetGameObjects();
 
@@ -89,7 +95,7 @@ public class AIUtilityAgent : AIAgent
     IEnumerator UseUtilityCR(AIUtilityObject utilityObject)
     {
         //	// move to utility position
-        movement.MoveTowards(utilityObject.transform.position);
+        movement.MoveTowards(utilityObject.target.position);
         //	// wait until at destination position
         yield return new WaitUntil(() => Vector3.Distance(transform.position, movement.Destination) < 2); 
         //	// play animation
@@ -139,7 +145,7 @@ public class AIUtilityAgent : AIAgent
 
     AIUtilityNeed GetNeedByType(AIUtilityNeed.Type type)
     {
-        return needs.First(need => need.type == type);
+        return needs.FirstOrDefault(need => need.type == type);
     }
 
 
