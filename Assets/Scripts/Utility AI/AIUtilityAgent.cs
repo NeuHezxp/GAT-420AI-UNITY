@@ -55,7 +55,7 @@ public class AIUtilityAgent : AIAgent
         animator.SetFloat("Speed", movement.Velocity.magnitude);
 
 		// setting animator based on happiness
-		animator.SetBool("Sad", happiness == 0);
+		animator.SetBool("Sad", happiness > = 0);
 
 		// check if not using utility object, if not look for one to use
 		if (activeUtilityObject == null)
